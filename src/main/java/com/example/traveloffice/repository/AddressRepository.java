@@ -22,6 +22,4 @@ public interface AddressRepository extends CrudRepository<Address, Long> {
 
     @Override
     void deleteById(Long id);
-
-
 }

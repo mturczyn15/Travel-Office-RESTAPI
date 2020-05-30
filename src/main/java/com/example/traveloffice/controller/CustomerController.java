@@ -9,32 +9,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/traveloffice/customer")
+@RequestMapping("/v1/")
 public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "getCustomers")
+    @RequestMapping(method = RequestMethod.GET, value = "customers")
     public List<CustomerDto> getCustomers() {
         return customerService.getCustomers();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getCustomer")
-    public CustomerDto getCustomer(@RequestParam Long customerId) {
+    @RequestMapping(method = RequestMethod.GET, value = "customers/{customerId}")
+    public CustomerDto getCustomer(@PathVariable Long customerId) {
         return customerService.getCustomer(customerId);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "deleteCustomer")
-    public void deleteCustomer(@RequestParam Long customerId) {
+    @RequestMapping(method = RequestMethod.DELETE, value = "customers/{customerId}")
+    public void deleteCustomer(@PathVariable Long customerId) {
         customerService.deleteCustomer(customerId);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "updateCustomer")
+    @RequestMapping(method = RequestMethod.PUT, value = "customers")
     public CustomerDto updateCustomer(@RequestBody CustomerDto customerDto) {
         return customerService.update(customerDto);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "createCustomer", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, value = "customers", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createCustomer(@RequestBody CustomerDto customerDto) {
         customerService.create(customerDto);
     }

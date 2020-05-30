@@ -9,33 +9,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("v1/traveloffice/address")
+@RequestMapping("/v1/")
 public class AddressController {
 
     @Autowired
     private AddressService addressService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "getAddresses")
+    @RequestMapping(method = RequestMethod.GET, value = "addresses")
     public List<AddressDto> getAddresses() {
         return addressService.getAddresses();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getAddress")
-    public AddressDto getAddress(@RequestParam Long addressId) {
+    @RequestMapping(method = RequestMethod.GET, value = "addresses/{addressId}")
+    public AddressDto getAddress(@PathVariable Long addressId) {
         return addressService.getAddress(addressId);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "deleteAddress")
-    public void deleteAddress(@RequestParam Long addressId) {
+    @RequestMapping(method = RequestMethod.DELETE, value = "addresses/{addressId}")
+    public void deleteAddress(@PathVariable Long addressId) {
         addressService.deleteAddress(addressId);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "updateAddress")
+    @RequestMapping(method = RequestMethod.PUT, value = "addresses", consumes = MediaType.APPLICATION_JSON_VALUE)
     public AddressDto updateAddress(@RequestBody AddressDto addressDto) {
         return addressService.update(addressDto);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "createAddress", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, value = "addresses", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createAddress(@RequestBody AddressDto addressDto) {
         addressService.create(addressDto);
     }

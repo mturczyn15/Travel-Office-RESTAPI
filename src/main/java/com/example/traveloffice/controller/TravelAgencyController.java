@@ -9,32 +9,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/traveloffice/travelAgency")
+@RequestMapping("/v1/")
 public class TravelAgencyController {
     @Autowired
     private TravelAgencyService travelAgencyService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "getTravelAgencies")
-    public List<TravelAgencyDto> getTravelAgencys() {
+    @RequestMapping(method = RequestMethod.GET, value = "travelAgencies")
+    public List<TravelAgencyDto> getTravelAgencies() {
         return travelAgencyService.getTravelAgencys();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getTravelAgency")
-    public TravelAgencyDto getTravelAgency(@RequestParam Long travelAgencyId) {
+    @RequestMapping(method = RequestMethod.GET, value = "travelAgencies/{travelAgencyId}")
+    public TravelAgencyDto getTravelAgency(@PathVariable Long travelAgencyId) {
         return travelAgencyService.getTravelAgency(travelAgencyId);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "deleteTravelAgency")
-    public void deleteTravelAgency(@RequestParam Long travelAgencyId) {
+    @RequestMapping(method = RequestMethod.DELETE, value = "travelAgencies/{travelAgencyId}")
+    public void deleteTravelAgency(@PathVariable Long travelAgencyId) {
         travelAgencyService.deleteTravelAgency(travelAgencyId);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "updateTravelAgency")
+    @RequestMapping(method = RequestMethod.PUT, value = "travelAgencies")
     public TravelAgencyDto updateTravelAgency(@RequestBody TravelAgencyDto travelAgencyDto) {
         return travelAgencyService.update(travelAgencyDto);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "createTravelAgency", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, value = "travelAgencies", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createTravelAgency(@RequestBody TravelAgencyDto travelAgencyDto) {
         travelAgencyService.create(travelAgencyDto);
     }

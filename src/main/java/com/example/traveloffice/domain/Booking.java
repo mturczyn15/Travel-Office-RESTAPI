@@ -1,5 +1,6 @@
 package com.example.traveloffice.domain;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,14 +23,17 @@ public class Booking {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull
     @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull
     @JoinColumn(name = "TRAVELAGENCY_ID")
     private TravelAgency travelAgency;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull
     @JoinColumn(name = "HOTEL_ID")
     private Hotel hotel;
 

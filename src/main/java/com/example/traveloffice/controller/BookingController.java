@@ -9,32 +9,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("v1/traveloffice/booking")
+@RequestMapping("/v1/")
 public class BookingController {
     @Autowired
     private BookingService bookingService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "getBookings")
+    @RequestMapping(method = RequestMethod.GET, value = "bookings")
     public List<BookingDto> getBookings() {
         return bookingService.getBookings();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getBooking")
-    public BookingDto getBooking(@RequestParam Long bookingId) {
+    @RequestMapping(method = RequestMethod.GET, value = "bookings/{bookingId}")
+    public BookingDto getBooking(@PathVariable Long bookingId) {
         return bookingService.getBooking(bookingId);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "deleteBooking")
-    public void deleteBooking(@RequestParam Long bookingId) {
+    @RequestMapping(method = RequestMethod.DELETE, value = "bookings/{bookingId}")
+    public void deleteBooking(@PathVariable Long bookingId) {
         bookingService.deleteBooking(bookingId);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "updateBooking")
+    @RequestMapping(method = RequestMethod.PUT, value = "bookings")
     public BookingDto updateBooking(@RequestBody BookingDto bookingDto) {
         return bookingService.update(bookingDto);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "createBooking", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, value = "bookings", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createBooking(@RequestBody BookingDto bookingDto) {
         bookingService.create(bookingDto);
     }

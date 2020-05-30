@@ -1,9 +1,7 @@
 package com.example.traveloffice.domain;
 
 import lombok.Data;
-import lombok.Getter;
 
-@Getter
 @Data
 public class HotelDto {
 
