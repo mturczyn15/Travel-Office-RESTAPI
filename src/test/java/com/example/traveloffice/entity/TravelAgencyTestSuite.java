@@ -95,6 +95,9 @@ public class TravelAgencyTestSuite {
 
         Optional<TravelAgency> optionalTravelAgency = travelAgencyRepository.findById(travelAgencyId);
         Assert.assertTrue(optionalTravelAgency.isPresent());
+        Assert.assertEquals("Radom", saveTravelAgency.getCity());
+        Assert.assertEquals("Agency", saveTravelAgency.getName());
+        Assert.assertEquals("000", saveTravelAgency.getPhoneNumber());
         travelAgencyRepository.deleteById(travelAgencyId);
     }
 }

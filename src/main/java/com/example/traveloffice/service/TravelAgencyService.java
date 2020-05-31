@@ -29,7 +29,7 @@ public class TravelAgencyService {
         return travelAgencyMapper.mapToDto(travelAgencyRepository.save(travelAgencyMapper.map(travelAgencyDto)));
     }
 
-    public List<TravelAgencyDto> getTravelAgencys() {
+    public List<TravelAgencyDto> getTravelAgencies() {
         return travelAgencyMapper.mapToDtoList(travelAgencyRepository.findAll());
     }
 

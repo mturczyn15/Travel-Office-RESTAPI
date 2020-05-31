@@ -16,7 +16,7 @@ public class TravelAgencyController {
 
     @RequestMapping(method = RequestMethod.GET, value = "travelAgencies")
     public List<TravelAgencyDto> getTravelAgencies() {
-        return travelAgencyService.getTravelAgencys();
+        return travelAgencyService.getTravelAgencies();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "travelAgencies/{travelAgencyId}")

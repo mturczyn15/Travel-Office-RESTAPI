@@ -95,6 +95,13 @@ public class BookingCrudTestSuite {
         Long bookingId = saveBooking.getId();
         //Then
         assertNotEquals((Object) 0L, bookingId);
+        assertEquals(customer, saveBooking.getCustomer());
+        assertEquals(hotel, saveBooking.getHotel());
+        assertEquals(travelAgency, saveBooking.getTravelAgency());
+        assertEquals(PaymentType.BLIK, saveBooking.getPaymentType());
+        assertEquals(new BigDecimal(2000), saveBooking.getPrice());
+        assertEquals(LocalDate.of(2003,12,22), saveBooking.getStartDate());
+        assertEquals(LocalDate.of(2003,12,27), saveBooking.getEndDate());
         //CleanUp
         bookingRepository.deleteById(bookingId);
     }

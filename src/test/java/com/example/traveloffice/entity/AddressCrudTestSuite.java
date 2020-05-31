@@ -36,6 +36,11 @@ public class AddressCrudTestSuite {
         Long addressId = saveAddress.getId();
         //Then
         assertNotEquals((Object) 0L, addressId);
+        assertEquals("Radom", saveAddress.getCity());
+        assertEquals("13", saveAddress.getHouseNumber());
+        assertEquals("000", saveAddress.getPhoneNumber());
+        assertEquals("Dobre", saveAddress.getStreet());
+        assertEquals("31313213", saveAddress.getZipCode());
         //CleanUp
         addressRepository.deleteById(addressId);
     }

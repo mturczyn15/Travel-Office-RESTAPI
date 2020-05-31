@@ -35,6 +35,10 @@ public class HotelCrudTestSuite {
         Long hotelId = saveHotel.getId();
         //Then
         assertNotEquals((Object) 0L, hotelId);
+        assertEquals("Lucjusz", saveHotel.getName());
+        assertEquals("Radom", saveHotel.getCity());
+        assertEquals(3, saveHotel.getStars());
+        assertEquals("000", saveHotel.getPhoneNumber());
         //CleanUp
         hotelRepository.deleteById(hotelId);
     }

@@ -67,6 +67,12 @@ public class CustomerCrudTestSuite {
 
         //Then
         Assert.assertNotEquals((Object) 0L, id);
+        Assert.assertEquals(1L, (Object)savedCustomer.getMainAddressId());
+        Assert.assertEquals("test_firstName", savedCustomer.getFirstName());
+        Assert.assertEquals("test_lastName", savedCustomer.getLastName());
+        Assert.assertEquals("test_login", savedCustomer.getLogin());
+        Assert.assertEquals("test_password", savedCustomer.getPassword());
+        Assert.assertEquals("test_email", savedCustomer.getEmail());
 
         //CleanUp
         customerRepository.deleteById(id);
