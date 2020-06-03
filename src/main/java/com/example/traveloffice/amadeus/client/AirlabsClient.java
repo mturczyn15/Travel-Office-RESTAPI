@@ -1,8 +1,8 @@
 package com.example.traveloffice.amadeus.client;
 
 import com.example.traveloffice.amadeus.config.AirlabsConfig;
-import com.example.traveloffice.domain.AirlabsResponseDto;
-import com.example.traveloffice.domain.ResponseDto;
+import com.example.traveloffice.domain.AirlabsResponse;
+import com.example.traveloffice.domain.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +25,10 @@ public class AirlabsClient {
     @Autowired
     private AirlabsConfig airlabsConfig;
 
-    public List<ResponseDto> getCityName(String cityCode) {
+    public List<Response> getCityName(String cityCode) {
         try {
-            ResponseDto[] responseDto = Objects.requireNonNull(restTemplate.getForObject(buildUri(cityCode), AirlabsResponseDto.class)).getResponseDto();
-            Optional<ResponseDto[]> names = Optional.ofNullable(responseDto);
+            Response[] response = Objects.requireNonNull(restTemplate.getForObject(buildUri(cityCode), AirlabsResponse.class)).getResponse();
+            Optional<Response[]> names = Optional.ofNullable(response);
             return names.map(Arrays::asList).orElseGet(ArrayList::new);
         } catch (RestClientException e) {
             LOGGER.error(e.getMessage(), e);
@@ -43,5 +43,4 @@ public class AirlabsClient {
                 .queryParam("code", city)
                 .build().encode().toUri();
     }
-
 }

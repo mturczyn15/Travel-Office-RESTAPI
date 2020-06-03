@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,12 +22,14 @@ public class AmadeusAirlabsController {
     private AirlabsClient airlabsClient;
 
     @RequestMapping(method = RequestMethod.GET, value = "getCities")
-    public String getAmadeusCities() throws ResponseException {
+    public List<String> getAmadeusCities() throws ResponseException {
 
         List<AirTraffic> cities = amadeusClient.getCities();
-        return "hej";
-
-
-        //cities.forEach(city -> city.getDestination() + " Flights: " + city.getAnalytics().getFlights().getScore() + " Travellers " + city.getAnalytics().getTravelers().getScore()      );
+        List<String> string = new ArrayList<>();
+        string.add("The most travelled cities. Published by amadeus.com");
+        for(AirTraffic traffic: cities) {
+            string.add(airlabsClient.getCityName(traffic.getDestination()).get(0).getName() + " Flights: " + traffic.getAnalytics().getFlights().getScore() + " Travellers " + traffic.getAnalytics().getTravelers().getScore());
+        }
+        return string;
     }
 }

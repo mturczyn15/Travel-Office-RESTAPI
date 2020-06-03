@@ -10,7 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AmadeusResponse {
+public class Response {
+
     @JsonProperty
-    private ResponseDto responseDto;
+    private String code;
+    @JsonProperty
+    private String name;
 }

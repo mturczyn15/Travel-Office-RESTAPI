@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AirlabsResponseDto {
+public class AirlabsResponse {
     @JsonProperty
-    private ResponseDto[] responseDto;
+    private Response[] response;
 }
