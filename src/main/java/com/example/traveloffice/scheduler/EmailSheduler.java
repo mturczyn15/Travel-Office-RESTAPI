@@ -34,6 +34,6 @@ public class EmailSheduler {
     }
 
     public static String chooseMessage(long size) {
-        return size > 1 ? " bookingss " : " booking ";
+        return size > 1 ? " bookings " : " booking ";
     }
 }

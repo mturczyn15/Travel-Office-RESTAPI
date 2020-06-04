@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class AirlabsConfig {
 
-    @Value("${airlabs.api.endpoint.prod}")
+    @Value("$ {airlabs.api.endpoint.prod}")
     private String airlabsApiEndpoint;
-    @Value("${airlabs.app.key}")
+    @Value("$ {airlabs.app.key}")
     private String airlabsAppKey;
 
 }

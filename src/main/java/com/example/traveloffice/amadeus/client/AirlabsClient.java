@@ -1,8 +1,8 @@
 package com.example.traveloffice.amadeus.client;
 
 import com.example.traveloffice.amadeus.config.AirlabsConfig;
-import com.example.traveloffice.domain.AirlabsResponse;
-import com.example.traveloffice.domain.Response;
+import com.example.traveloffice.domain.AirlabsResponseDto;
+import com.example.traveloffice.domain.ResponseDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,10 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Component
 public class AirlabsClient {
@@ -25,11 +28,11 @@ public class AirlabsClient {
     @Autowired
     private AirlabsConfig airlabsConfig;
 
-    public List<Response> getCityName(String cityCode) {
+    public List<ResponseDto> getCityName(String cityCode) {
         try {
-            Response[] response = Objects.requireNonNull(restTemplate.getForObject(buildUri(cityCode), AirlabsResponse.class)).getResponse();
-            Optional<Response[]> names = Optional.ofNullable(response);
-            return names.map(Arrays::asList).orElseGet(ArrayList::new);
+            List<ResponseDto> airlabResponseDto = Objects.requireNonNull(restTemplate.getForObject(buildUri(cityCode), AirlabsResponseDto.class)).getResponse();
+            Optional<List<ResponseDto>> names = Optional.ofNullable(airlabResponseDto);
+            return names.orElseGet(ArrayList::new);
         } catch (RestClientException e) {
             LOGGER.error(e.getMessage(), e);
             return new ArrayList<>();

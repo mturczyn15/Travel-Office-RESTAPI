@@ -106,7 +106,8 @@ public class AddressControllerTest {
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
                 .andExpect(status().isOk());
-
+        //CleanUp
+        addressService.deleteAddress(1L);
     }
 
     @Test

@@ -128,7 +128,7 @@ public class BookingCrudTestSuite {
 
 
     @Test
-    public void testGetAllBookinges() {
+    public void testGetAllBookings() {
         //Given
         Booking booking1 = Booking.builder()
                 .customer(customer)
