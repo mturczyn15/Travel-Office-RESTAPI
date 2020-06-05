@@ -1,8 +1,10 @@
 package com.example.traveloffice.service;
 
+import com.example.traveloffice.config.AdminConfig;
 import com.example.traveloffice.domain.EntityNotFoundException;
 import com.example.traveloffice.domain.Hotel;
 import com.example.traveloffice.domain.HotelDto;
+import com.example.traveloffice.domain.Mail;
 import com.example.traveloffice.mapper.HotelMapper;
 import com.example.traveloffice.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +19,21 @@ public class HotelService {
     private HotelRepository hotelRepository;
     @Autowired
     private HotelMapper hotelMapper;
+    @Autowired
+    private SimpleEmailService simpleEmailService;
+    @Autowired
+    private AdminConfig adminConfig;
 
     public HotelDto create(final HotelDto hotelDto) {
         Hotel hotel = hotelMapper.map(hotelDto);
+        simpleEmailService.send(
+                Mail.builder()
+                        .mailTo(adminConfig.getAmdinMail())
+                        .Subject("New hotel")
+                        .message("New hotel: " + hotel.getName() + " has been created.")
+                        .build()
+
+        );
         return hotelMapper.mapToDto(hotelRepository.save(hotel));
     }
 

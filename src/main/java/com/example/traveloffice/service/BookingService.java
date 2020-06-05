@@ -26,6 +26,7 @@ public class BookingService {
     @Autowired
     private HotelRepository hotelRepository;
 
+
     public BookingDto create(final BookingDto bookingDto) {
         Customer customer = customerRepository.findById(bookingDto.getCustomerId()).orElseThrow(() -> new EntityNotFoundException(Customer.class, bookingDto.getCustomerId()));
         TravelAgency travelAgency = travelAgencyRepository.findById(bookingDto.getTravelAgencyId()).orElseThrow(() -> new EntityNotFoundException(TravelAgency.class, bookingDto.getTravelAgencyId()));

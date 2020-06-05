@@ -1,4 +1,4 @@
-package com.example.traveloffice.amadeus.config;
+package com.example.traveloffice.airlabs.config;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;

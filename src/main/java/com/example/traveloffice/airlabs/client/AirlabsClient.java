@@ -1,6 +1,6 @@
-package com.example.traveloffice.amadeus.client;
+package com.example.traveloffice.airlabs.client;
 
-import com.example.traveloffice.amadeus.config.AirlabsConfig;
+import com.example.traveloffice.airlabs.config.AirlabsConfig;
 import com.example.traveloffice.domain.AirlabsResponseDto;
 import com.example.traveloffice.domain.ResponseDto;
 import org.slf4j.Logger;
