@@ -1,6 +1,6 @@
 package com.example.traveloffice.airlabs.client;
 
-import com.example.traveloffice.airlabs.config.AirlabsConfig;
+import com.example.traveloffice.airlabs.config.AirlabsConfigSingleton;
 import com.example.traveloffice.domain.AirlabsResponseDto;
 import com.example.traveloffice.domain.ResponseDto;
 import org.slf4j.Logger;
@@ -25,8 +25,6 @@ public class AirlabsClient {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Autowired
-    private AirlabsConfig airlabsConfig;
 
     public List<ResponseDto> getCityName(String cityCode) {
         try {
@@ -41,8 +39,8 @@ public class AirlabsClient {
 
     private URI buildUri(String city) {
 
-        return UriComponentsBuilder.fromHttpUrl(airlabsConfig.getAirlabsApiEndpoint() +  "/cities/")
-                .queryParam("api_key", airlabsConfig.getAirlabsAppKey())
+        return UriComponentsBuilder.fromHttpUrl(AirlabsConfigSingleton.getInstance().getAirlabsApiEndpoint() +  "/cities/")
+                .queryParam("api_key", AirlabsConfigSingleton.getInstance().getAirlabsAppKey())
                 .queryParam("code", city)
                 .build().encode().toUri();
     }
