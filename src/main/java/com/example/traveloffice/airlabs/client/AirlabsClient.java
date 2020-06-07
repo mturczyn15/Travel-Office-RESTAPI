@@ -3,6 +3,8 @@ package com.example.traveloffice.airlabs.client;
 import com.example.traveloffice.airlabs.config.AirlabsConfigSingleton;
 import com.example.traveloffice.domain.AirlabsResponseDto;
 import com.example.traveloffice.domain.ResponseDto;
+import com.example.traveloffice.mapper.ResponseMapper;
+import com.example.traveloffice.repository.ResponseRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +26,17 @@ public class AirlabsClient {
 
     @Autowired
     private RestTemplate restTemplate;
+    @Autowired
+    private ResponseRepository responseRepository;
+    @Autowired
+    private ResponseMapper responseMapper;
 
 
     public List<ResponseDto> getCityName(String cityCode) {
         try {
             List<ResponseDto> airlabResponseDto = Objects.requireNonNull(restTemplate.getForObject(buildUri(cityCode), AirlabsResponseDto.class)).getResponse();
-            Optional<List<ResponseDto>> names = Optional.ofNullable(airlabResponseDto);
+            responseRepository.save(responseMapper.map(airlabResponseDto.get(0)));
+            Optional<List<ResponseDto>> names = Optional.of(airlabResponseDto);
             return names.orElseGet(ArrayList::new);
         } catch (RestClientException e) {
             LOGGER.error(e.getMessage(), e);

@@ -1,13 +1,14 @@
 package com.example.traveloffice.service;
 
-import com.example.traveloffice.domain.EntityNotFoundException;
-import com.example.traveloffice.domain.TravelAgency;
-import com.example.traveloffice.domain.TravelAgencyDto;
+import com.example.traveloffice.domain.*;
 import com.example.traveloffice.mapper.TravelAgencyMapper;
+import com.example.traveloffice.repository.TravelAgencyOperationRepository;
 import com.example.traveloffice.repository.TravelAgencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,8 @@ public class TravelAgencyService {
     private TravelAgencyRepository travelAgencyRepository;
     @Autowired
     private TravelAgencyMapper travelAgencyMapper;
+    @Autowired
+    private TravelAgencyOperationRepository travelAgencyOperationRepository;
 
     public TravelAgencyDto create(final TravelAgencyDto travelAgencyDto) {
         travelAgencyDto.setId(null);
@@ -35,6 +38,13 @@ public class TravelAgencyService {
 
     public TravelAgencyDto getTravelAgency(final Long id) {
         Optional<TravelAgency> travelAgency = travelAgencyRepository.findById(id);
+        travelAgencyOperationRepository.save(TravelAgencyOperation.builder()
+                .travelAgency(travelAgency.orElse(null))
+                .operation(Operation.GET)
+                .date(LocalDate.now())
+                .time(LocalTime.now())
+                .build()
+        );
         return travelAgencyMapper.mapToDto(travelAgency.orElseThrow(() -> new EntityNotFoundException(TravelAgency.class, id)));
     }
 

@@ -1,11 +1,11 @@
 package com.example.traveloffice.service;
 
-import com.example.traveloffice.config.AdminConfig;
 import com.example.traveloffice.domain.EntityNotFoundException;
 import com.example.traveloffice.domain.Hotel;
 import com.example.traveloffice.domain.HotelDto;
 import com.example.traveloffice.domain.Mail;
 import com.example.traveloffice.mapper.HotelMapper;
+import com.example.traveloffice.repository.HotelOperationRepository;
 import com.example.traveloffice.repository.HotelRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,10 +34,7 @@ public class HotelServiceTest {
     private HotelMapper hotelMapper;
 
     @Mock
-    private AdminConfig adminConfig;
-
-    @Mock
-    private SimpleEmailService simpleEmailService;
+    private HotelOperationRepository hotelOperationRepository;
 
     @Test
     public void testGetHotels() {
@@ -84,9 +81,7 @@ public class HotelServiceTest {
         HotelDto hotelDto = new HotelDto(1L, "task", "city", 5, "3456");
         when(hotelMapper.map(hotelDto)).thenReturn(hotel);
         when(hotelRepository.save(hotel)).thenReturn(hotel);
-        when(adminConfig.getAmdinMail()).thenReturn("test@mail");
         when(hotelMapper.mapToDto(hotel)).thenReturn(hotelDto);
-        simpleEmailService.send(mail);
         //When
         HotelDto createdHotel = hotelService.create(hotelDto);
         //Then

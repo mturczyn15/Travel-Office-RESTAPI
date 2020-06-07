@@ -1,7 +1,7 @@
 package com.example.traveloffice.controller;
 
 import com.example.traveloffice.domain.HotelDto;
-import com.example.traveloffice.facade.HotelFacade;
+import com.example.traveloffice.service.HotelService;
 import com.google.gson.Gson;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,13 +31,13 @@ public class HotelControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private HotelFacade hotelFacade;
+    private HotelService hotelService;
 
     @Test
     public void shouldFetchEmptyHotels() throws Exception {
         //Given
         List<HotelDto> hotelsDto = new ArrayList<>();
-        when(hotelFacade.getHotels()).thenReturn(hotelsDto);
+        when(hotelService.getHotels()).thenReturn(hotelsDto);
         //When&Then
         mockMvc.perform(get("/v1/hotels").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200))
@@ -49,7 +49,7 @@ public class HotelControllerTest {
         //Given
         List<HotelDto> hotelsDto = new ArrayList<>();
         hotelsDto.add(new HotelDto(1L, "hotel", "city", 4, "435"));
-        when(hotelFacade.getHotels()).thenReturn(hotelsDto);
+        when(hotelService.getHotels()).thenReturn(hotelsDto);
         //When&Then
         mockMvc.perform(get("/v1/hotels").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -66,7 +66,7 @@ public class HotelControllerTest {
     public void shouldFetchHotel() throws Exception {
         //Given
         HotelDto hotelDto = new HotelDto(1L, "hotel", "city", 4, "435");
-        when(hotelFacade.getHotel(ArgumentMatchers.any(Long.class))).thenReturn(hotelDto);
+        when(hotelService.getHotel(ArgumentMatchers.any(Long.class))).thenReturn(hotelDto);
         //When&Then
         mockMvc.perform(get("/v1/hotels/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -87,7 +87,7 @@ public class HotelControllerTest {
                 .name("name")
                 .phoneNumber("123")
                 .build();
-        when(hotelFacade.create(hotelDto)).thenReturn(hotelDto);
+        when(hotelService.create(hotelDto)).thenReturn(hotelDto);
         //When&Then
         mockMvc.perform(delete("/v1/hotels/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -99,7 +99,7 @@ public class HotelControllerTest {
         HotelDto hotelDto = new HotelDto(1L, "hotel", "city", 4, "435");
         Gson gson = new Gson();
         String jsonContent = gson.toJson(hotelDto);
-        when(hotelFacade.create(hotelDto)).thenReturn(hotelDto);
+        when(hotelService.create(hotelDto)).thenReturn(hotelDto);
         //When&Then
         mockMvc.perform(post("/v1/hotels")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -114,7 +114,7 @@ public class HotelControllerTest {
         //Given
         HotelDto hotelDto = new HotelDto(1L, "hotel", "city", 4, "435");
         HotelDto updatedHotelDto = new HotelDto(1L, "updatedhotel", "updatedcity", 4, "435");
-        when(hotelFacade.update(hotelDto)).thenReturn(updatedHotelDto);
+        when(hotelService.update(hotelDto)).thenReturn(updatedHotelDto);
         Gson gson = new Gson();
         String jsonContent = gson.toJson(hotelDto);
         //When&Then

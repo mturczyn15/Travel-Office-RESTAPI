@@ -1,13 +1,14 @@
 package com.example.traveloffice.service;
 
-import com.example.traveloffice.domain.EntityNotFoundException;
-import com.example.traveloffice.domain.Hotel;
-import com.example.traveloffice.domain.HotelDto;
+import com.example.traveloffice.domain.*;
 import com.example.traveloffice.mapper.HotelMapper;
+import com.example.traveloffice.repository.HotelOperationRepository;
 import com.example.traveloffice.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,8 @@ public class HotelService {
     private HotelRepository hotelRepository;
     @Autowired
     private HotelMapper hotelMapper;
+    @Autowired
+    private HotelOperationRepository hotelOperationRepository;
 
     public HotelDto create(final HotelDto hotelDto) {
         Hotel hotel = hotelMapper.map(hotelDto);
@@ -29,11 +32,19 @@ public class HotelService {
     }
 
     public List<HotelDto> getHotels() {
+
         return hotelMapper.mapToDtoList(hotelRepository.findAll());
     }
 
     public HotelDto getHotel(final Long id) {
         Optional<Hotel> hotel = hotelRepository.findById(id);
+        hotelOperationRepository.save(HotelOperation.builder()
+                .hotel(hotel.orElse(null))
+                .operation(Operation.GET)
+                .date(LocalDate.now())
+                .time(LocalTime.now())
+                .build()
+        );
         return hotelMapper.mapToDto(hotel.orElseThrow(() -> new EntityNotFoundException(Hotel.class, id)));
     }
 

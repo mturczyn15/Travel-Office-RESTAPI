@@ -4,6 +4,7 @@ import com.example.traveloffice.domain.EntityNotFoundException;
 import com.example.traveloffice.domain.TravelAgency;
 import com.example.traveloffice.domain.TravelAgencyDto;
 import com.example.traveloffice.mapper.TravelAgencyMapper;
+import com.example.traveloffice.repository.TravelAgencyOperationRepository;
 import com.example.traveloffice.repository.TravelAgencyRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +31,9 @@ public class TravelAgencyServiceTest {
 
     @Mock
     private TravelAgencyMapper travelAgencyMapper;
+
+    @Mock
+    private TravelAgencyOperationRepository travelAgencyOperationRepository;
 
     @Test
     public void testGetTravelAgencys() {

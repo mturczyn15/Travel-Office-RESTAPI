@@ -1,15 +1,15 @@
 package com.example.traveloffice.service;
 
-import com.example.traveloffice.domain.Address;
-import com.example.traveloffice.domain.Customer;
-import com.example.traveloffice.domain.CustomerDto;
-import com.example.traveloffice.domain.EntityNotFoundException;
+import com.example.traveloffice.domain.*;
 import com.example.traveloffice.mapper.CustomerMapper;
 import com.example.traveloffice.repository.AddressRepository;
+import com.example.traveloffice.repository.CustomerOperationRepository;
 import com.example.traveloffice.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +21,8 @@ public class CustomerService {
     private CustomerMapper customerMapper;
     @Autowired
     private AddressRepository addressRepository;
+    @Autowired
+    private CustomerOperationRepository customerOperationRepository;
 
     public CustomerDto create(final CustomerDto customerDto) {
         addressRepository.findById(customerDto.getMainAddressId()).orElseThrow(() -> new EntityNotFoundException(Address.class, customerDto.getMainAddressId()));
@@ -36,16 +38,28 @@ public class CustomerService {
     }
 
     public List<CustomerDto> getCustomers() {
+
         return customerMapper.mapToDtoList(customerRepository.findAll());
     }
 
     public CustomerDto getCustomer(final Long id) {
         Optional<Customer> customer = customerRepository.findById(id);
+        customerOperationRepository.save(CustomerOperation.builder()
+                .customer(customer.orElse(null))
+                .operation(Operation.GET)
+                .date(LocalDate.now())
+                .time(LocalTime.now())
+                .build()
+        );
         return customerMapper.mapToDto(customer.orElseThrow(() -> new EntityNotFoundException(Customer.class, id)));
     }
 
     public void deleteCustomer(final Long customerId) {
         customerRepository.findById(customerId).orElseThrow(() -> new EntityNotFoundException(Customer.class, customerId));
         customerRepository.deleteById(customerId);
+    }
+
+    public List<CustomerDto> getCustomersByFirstName(String name) {
+        return customerMapper.mapToDtoList(customerRepository.findCustomersByFirstName(name));
     }
 }

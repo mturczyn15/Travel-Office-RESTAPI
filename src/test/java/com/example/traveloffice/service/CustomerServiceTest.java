@@ -6,6 +6,7 @@ import com.example.traveloffice.domain.CustomerDto;
 import com.example.traveloffice.domain.EntityNotFoundException;
 import com.example.traveloffice.mapper.CustomerMapper;
 import com.example.traveloffice.repository.AddressRepository;
+import com.example.traveloffice.repository.CustomerOperationRepository;
 import com.example.traveloffice.repository.CustomerRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,6 +36,9 @@ public class CustomerServiceTest {
 
     @Mock
     private CustomerMapper customerMapper;
+
+    @Mock
+    private CustomerOperationRepository customerOperationRepository;
 
     @Test
     public void testGetCustomers() {

@@ -5,6 +5,7 @@ import com.example.traveloffice.domain.AddressDto;
 import com.example.traveloffice.domain.Customer;
 import com.example.traveloffice.domain.EntityNotFoundException;
 import com.example.traveloffice.mapper.AddressMapper;
+import com.example.traveloffice.repository.AddressOperationRepository;
 import com.example.traveloffice.repository.AddressRepository;
 import com.example.traveloffice.repository.CustomerRepository;
 import org.junit.Test;
@@ -35,6 +36,9 @@ public class AddressServiceController {
 
     @Mock
     private AddressMapper addressMapper;
+
+    @Mock
+    private AddressOperationRepository addressOperationRepository;
 
     @Test
     public void testGetAddresses() {

@@ -7,7 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin("*")
+
 @RestController
 @RequestMapping("/v1/")
 public class CustomerController {
@@ -24,6 +24,11 @@ public class CustomerController {
         return customerService.getCustomer(customerId);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "customers/firstname")
+    public List<CustomerDto> getCustomersByName(@RequestParam String name) {
+        return customerService.getCustomersByFirstName(name);
+    }
+
     @RequestMapping(method = RequestMethod.DELETE, value = "customers/{customerId}")
     public void deleteCustomer(@PathVariable Long customerId) {
         customerService.deleteCustomer(customerId);
@@ -38,4 +43,6 @@ public class CustomerController {
     public void createCustomer(@RequestBody CustomerDto customerDto) {
         customerService.create(customerDto);
     }
+
+
 }

@@ -128,7 +128,7 @@ public class CustomerCrudTestSuite {
 
     @Test
     public void testGetAllCustomers() {
-        //Given
+
         //Given
         Customer customer1 = Customer.builder()
                 .mainAddressId(1L)
