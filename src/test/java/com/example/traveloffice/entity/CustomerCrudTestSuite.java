@@ -28,11 +28,9 @@ public class CustomerCrudTestSuite {
     public void testSaveCustomerWithAddressAndBooking() {
         //Given
         Customer customer = Customer.builder()
-                .mainAddressId(1L)
                 .firstName("test_firstName")
                 .lastName("test_lastName")
                 .login("test_login")
-                .password("test_password")
                 .email("test_email")
                 .bookings(new ArrayList<>())
                 .addresses(new ArrayList<>())
@@ -67,11 +65,9 @@ public class CustomerCrudTestSuite {
 
         //Then
         Assert.assertNotEquals((Object) 0L, id);
-        Assert.assertEquals(1L, (Object)savedCustomer.getMainAddressId());
         Assert.assertEquals("test_firstName", savedCustomer.getFirstName());
         Assert.assertEquals("test_lastName", savedCustomer.getLastName());
         Assert.assertEquals("test_login", savedCustomer.getLogin());
-        Assert.assertEquals("test_password", savedCustomer.getPassword());
         Assert.assertEquals("test_email", savedCustomer.getEmail());
 
         //CleanUp
@@ -82,11 +78,9 @@ public class CustomerCrudTestSuite {
     public void testSaveCustomer() {
         //Given
         Customer customer = Customer.builder()
-                .mainAddressId(1L)
                 .firstName("test_firstName")
                 .lastName("test_lastName")
                 .login("test_login")
-                .password("test_password")
                 .email("test_email")
                 .bookings(new ArrayList<>())
                 .addresses(new ArrayList<>())
@@ -108,11 +102,9 @@ public class CustomerCrudTestSuite {
         //Given
         //Given
         Customer customer = Customer.builder()
-                .mainAddressId(1L)
                 .firstName("test_firstName")
                 .lastName("test_lastName")
                 .login("test_login")
-                .password("test_password")
                 .email("test_email")
                 .bookings(new ArrayList<>())
                 .addresses(new ArrayList<>())
@@ -131,11 +123,9 @@ public class CustomerCrudTestSuite {
 
         //Given
         Customer customer1 = Customer.builder()
-                .mainAddressId(1L)
                 .firstName("test_firstName")
                 .lastName("test_lastName")
                 .login("test_login")
-                .password("test_password")
                 .email("test_email")
                 .bookings(new ArrayList<>())
                 .addresses(new ArrayList<>())
@@ -143,11 +133,9 @@ public class CustomerCrudTestSuite {
 
         //Given
         Customer customer2 = Customer.builder()
-                .mainAddressId(1L)
                 .firstName("test_firstName")
                 .lastName("test_lastName")
                 .login("test_login")
-                .password("test_password")
                 .email("test_email")
                 .bookings(new ArrayList<>())
                 .addresses(new ArrayList<>())
@@ -170,11 +158,9 @@ public class CustomerCrudTestSuite {
     public void testGetCustomerById() {
         //Given
         Customer customer = Customer.builder()
-                .mainAddressId(1L)
                 .firstName("test_firstName")
                 .lastName("test_lastName")
                 .login("test_login")
-                .password("test_password")
                 .email("test_email")
                 .bookings(new ArrayList<>())
                 .addresses(new ArrayList<>())

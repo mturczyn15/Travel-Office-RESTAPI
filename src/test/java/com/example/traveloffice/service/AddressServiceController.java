@@ -74,7 +74,7 @@ public class AddressServiceController {
         //Given
         Address address = new Address(1L, new Customer(), "street", "4","city", "435", "5");
         AddressDto addressDto = new AddressDto(1L, 1L, "street", "4","city", "435", "5");
-        Customer customer = new Customer(1L, 1L, "task", "city", "3456", "dada", "mail", new ArrayList<>(), new ArrayList<>());
+        Customer customer = new Customer(1L, "task", "city", "3456", "mail", new ArrayList<>(), new ArrayList<>());
         Optional<Customer> optCustomer = Optional.of(customer);
         when(customerRepository.findById(customer.getId())).thenReturn(optCustomer);
         when(addressMapper.map(addressDto, customer)).thenReturn(address);
@@ -92,7 +92,7 @@ public class AddressServiceController {
         Optional<Address> optAddress = Optional.of(new Address(1L, new Customer(), "street", "4","city", "435", "5"));
         Address address = new Address(1L, new Customer(), "street", "4","city", "435", "5");
         AddressDto addressDto = new AddressDto(1L, 1L, "street", "4","city", "435", "5");
-        Customer customer = new Customer(1L, 1L, "task", "city", "3456", "dada", "mail", new ArrayList<>(), new ArrayList<>());
+        Customer customer = new Customer(1L, "task", "city", "3456", "mail", new ArrayList<>(), new ArrayList<>());
         Optional<Customer> optCustomer = Optional.of(customer);
         when(customerRepository.findById(customer.getId())).thenReturn(optCustomer);
         when(addressMapper.map(addressDto, customer)).thenReturn(address);

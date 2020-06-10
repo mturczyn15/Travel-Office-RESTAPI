@@ -40,11 +40,9 @@ public class BookingCrudTestSuite {
     @BeforeAll
     public void initEntities() {
         Customer customer = Customer.builder()
-                .mainAddressId(1L)
                 .firstName("test_firstName")
                 .lastName("test_lastName")
                 .login("test_login")
-                .password("test_password")
                 .email("test_email")
                 .bookings(new ArrayList<>())
                 .addresses(new ArrayList<>())

@@ -22,9 +22,6 @@ public class Customer {
     @Column(name = "CUSTOMER_ID")
     private Long id;
 
-    @Column(name = "MAIN_ADDRESS_ID")
-    private Long mainAddressId;
-
     @Column(name = "FIRST_NAME")
     private String firstName;
 
@@ -33,9 +30,6 @@ public class Customer {
 
     @Column(name = "LOGIN")
     private String login;
-
-    @Column(name = "PASSWORD")
-    private String password;
 
     @Column(name = "EMAIL")
     private String email;

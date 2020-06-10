@@ -13,10 +13,8 @@ import lombok.NoArgsConstructor;
 public class CustomerDto {
 
     private Long id;
-    private Long mainAddressId;
     private String firstName;
     private String lastName;
     private String login;
-    private String password;
     private String email;
 }

@@ -2,7 +2,6 @@ package com.example.traveloffice.service;
 
 import com.example.traveloffice.domain.*;
 import com.example.traveloffice.mapper.CustomerMapper;
-import com.example.traveloffice.repository.AddressRepository;
 import com.example.traveloffice.repository.CustomerOperationRepository;
 import com.example.traveloffice.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,19 +19,15 @@ public class CustomerService {
     @Autowired
     private CustomerMapper customerMapper;
     @Autowired
-    private AddressRepository addressRepository;
-    @Autowired
     private CustomerOperationRepository customerOperationRepository;
 
     public CustomerDto create(final CustomerDto customerDto) {
-        addressRepository.findById(customerDto.getMainAddressId()).orElseThrow(() -> new EntityNotFoundException(Address.class, customerDto.getMainAddressId()));
         customerDto.setId(null);
         Customer customer = customerMapper.map(customerDto);
         return customerMapper.mapToDto(customerRepository.save(customer));
     }
 
     public CustomerDto update(final CustomerDto customerDto) {
-        addressRepository.findById(customerDto.getMainAddressId()).orElseThrow(() -> new EntityNotFoundException(Address.class, customerDto.getMainAddressId()));
         customerRepository.findById(customerDto.getId()).orElseThrow(() -> new EntityNotFoundException(Customer.class, customerDto.getId()));
         return customerMapper.mapToDto(customerRepository.save(customerMapper.map(customerDto)));
     }
