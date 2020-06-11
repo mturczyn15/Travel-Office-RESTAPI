@@ -26,7 +26,7 @@ dependencies {
 	compile 'com.amadeus:amadeus-java:5.0.0'
 	compileOnly 'org.projectlombok:lombok'
 	compile 'com.google.code.gson:gson:2.8.+'
-	compile 'org.postrgresql:postgresql'
+	compile group: 'postgresql', name: 'postgresql', version: '9.0-801.jdbc4'
 	runtimeOnly('com.h2database:h2')
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
 	compile('org.springframework.boot:spring-boot-starter-mail:1.5.7.RELEASE')
