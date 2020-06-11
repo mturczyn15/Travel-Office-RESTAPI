@@ -26,10 +26,11 @@ dependencies {
 	compile 'com.amadeus:amadeus-java:5.0.0'
 	compileOnly 'org.projectlombok:lombok'
 	compile 'com.google.code.gson:gson:2.8.+'
+	compile 'org.postrgresql:postgresql'
 	runtimeOnly('com.h2database:h2')
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
 	compile('org.springframework.boot:spring-boot-starter-mail:1.5.7.RELEASE')
-	runtimeOnly 'mysql:mysql-connector-java'
+	//runtimeOnly 'mysql:mysql-connector-java'
 	testCompile group: 'junit', name: 'junit', version: '4.13'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
