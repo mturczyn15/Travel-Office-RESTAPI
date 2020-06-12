@@ -52,4 +52,8 @@ public class TravelAgencyService {
         travelAgencyRepository.findById(travelAgencyId).orElseThrow(() -> new EntityNotFoundException(TravelAgency.class, travelAgencyId));
         travelAgencyRepository.deleteById(travelAgencyId);
     }
+
+    public List<TravelAgencyDto> getTravelAgenciesByName(String name) {
+        return travelAgencyMapper.mapToDtoList(travelAgencyRepository.findTravelAgenciesByNameContains(name));
+    }
 }

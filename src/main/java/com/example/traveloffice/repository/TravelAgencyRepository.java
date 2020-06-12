@@ -22,4 +22,6 @@ public interface TravelAgencyRepository extends CrudRepository<TravelAgency, Lon
 
     @Override
     void deleteById(Long id);
+
+    List<TravelAgency> findTravelAgenciesByNameContains(String name);
 }

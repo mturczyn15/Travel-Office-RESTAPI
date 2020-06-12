@@ -43,6 +43,4 @@ public class CustomerController {
     public void createCustomer(@RequestBody CustomerDto customerDto) {
         customerService.create(customerDto);
     }
-
-
 }

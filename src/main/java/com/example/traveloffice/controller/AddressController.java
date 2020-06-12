@@ -40,4 +40,8 @@ public class AddressController {
         addressService.create(addressDto);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "addresses/city")
+    public List<AddressDto> getAddressesByCity(@RequestParam String city) {
+        return addressService.getAddressesByCity(city);
+    }
 }

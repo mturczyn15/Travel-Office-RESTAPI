@@ -58,4 +58,8 @@ public class AddressService {
         addressRepository.findById(addressId).orElseThrow(() -> new EntityNotFoundException(Address.class, addressId));
         addressRepository.deleteById(addressId);
     }
+
+    public List<AddressDto> getAddressesByCity(String city) {
+        return addressMapper.mapToDtoList(addressRepository.findAddressesByCityContains(city));
+    }
 }

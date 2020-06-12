@@ -52,4 +52,8 @@ public class HotelService {
         hotelRepository.findById(hotelId).orElseThrow(() -> new EntityNotFoundException(Hotel.class, hotelId));
         hotelRepository.deleteById(hotelId);
     }
+
+    public List<HotelDto> getHotelsByName(String name) {
+        return hotelMapper.mapToDtoList(hotelRepository.findHotelsByNameContains(name));
+    }
 }

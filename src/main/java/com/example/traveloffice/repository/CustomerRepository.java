@@ -23,5 +23,5 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
     @Override
     void deleteById(Long id);
 
-    List<Customer> findCustomersByFirstName(String name);
+    List<Customer> findCustomersByFirstNameContains(String firstName);
 }

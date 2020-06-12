@@ -55,6 +55,16 @@ public class CustomerService {
     }
 
     public List<CustomerDto> getCustomersByFirstName(String name) {
-        return customerMapper.mapToDtoList(customerRepository.findCustomersByFirstName(name));
+        List<Customer> customersByFirstNameContains = customerRepository.findCustomersByFirstNameContains(name);
+        for (Customer customer : customersByFirstNameContains) {
+            customerOperationRepository.save(CustomerOperation.builder()
+                    .customer(customer)
+                    .operation(Operation.GET)
+                    .date(LocalDate.now())
+                    .time(LocalTime.now())
+                    .build()
+            );
+        }
+        return customerMapper.mapToDtoList(customersByFirstNameContains);
     }
 }

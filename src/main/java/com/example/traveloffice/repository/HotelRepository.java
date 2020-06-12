@@ -22,4 +22,6 @@ public interface HotelRepository extends CrudRepository<Hotel, Long> {
 
     @Override
     void deleteById(Long id);
+
+    List<Hotel> findHotelsByNameContains(String text);
 }

@@ -38,4 +38,9 @@ public class TravelAgencyController {
     public void createTravelAgency(@RequestBody TravelAgencyDto travelAgencyDto) {
         travelAgencyService.create(travelAgencyDto);
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "travelAgencies/name")
+    public List<TravelAgencyDto> getTravelAgenciesByName(@RequestParam String name) {
+        return travelAgencyService.getTravelAgenciesByName(name);
+    }
 }

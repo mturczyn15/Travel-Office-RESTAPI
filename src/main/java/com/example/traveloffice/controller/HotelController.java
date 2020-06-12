@@ -38,4 +38,9 @@ public class HotelController {
     public void createHotel(@RequestBody HotelDto hotelDto) {
         hotelService.create(hotelDto);
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "hotels/name")
+    public List<HotelDto> getHotelsByName(@RequestParam String name) {
+        return hotelService.getHotelsByName(name);
+    }
 }
