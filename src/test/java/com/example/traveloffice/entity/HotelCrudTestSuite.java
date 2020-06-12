@@ -1,6 +1,7 @@
 package com.example.traveloffice.entity;
 
 import com.example.traveloffice.domain.Hotel;
+import com.example.traveloffice.domain.Stars;
 import com.example.traveloffice.repository.HotelRepository;
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,7 +28,7 @@ public class HotelCrudTestSuite {
         Hotel hotel = Hotel.builder()
                 .name("Lucjusz")
                 .city("Radom")
-                .stars(3)
+                .stars(Stars.FIVE)
                 .phoneNumber("000")
                 .build();
         //When
@@ -37,7 +38,7 @@ public class HotelCrudTestSuite {
         assertNotEquals((Object) 0L, hotelId);
         assertEquals("Lucjusz", saveHotel.getName());
         assertEquals("Radom", saveHotel.getCity());
-        assertEquals(3, saveHotel.getStars());
+        assertEquals(Stars.FIVE, saveHotel.getStars());
         assertEquals("000", saveHotel.getPhoneNumber());
         //CleanUp
         hotelRepository.deleteById(hotelId);
@@ -49,7 +50,7 @@ public class HotelCrudTestSuite {
         Hotel hotel = Hotel.builder()
                 .name("Lucjusz")
                 .city("Radom")
-                .stars(3)
+                .stars(Stars.FIVE)
                 .phoneNumber("000")
                 .build();
         //When
@@ -67,14 +68,14 @@ public class HotelCrudTestSuite {
         Hotel hotel1 = Hotel.builder()
                 .name("Lucjusz")
                 .city("Radom")
-                .stars(3)
+                .stars(Stars.FIVE)
                 .phoneNumber("000")
                 .build();
 
         Hotel hotel2 = Hotel.builder()
                 .name("Malfoy")
                 .city("Radom")
-                .stars(1)
+                .stars(Stars.FIVE)
                 .phoneNumber("000")
                 .build();
         //When
@@ -97,7 +98,7 @@ public class HotelCrudTestSuite {
         Hotel hotel = Hotel.builder()
                 .name("Lucjusz")
                 .city("Radom")
-                .stars(3)
+                .stars(Stars.FIVE)
                 .phoneNumber("000")
                 .build();
         //When

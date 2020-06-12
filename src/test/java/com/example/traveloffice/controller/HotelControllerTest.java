@@ -1,6 +1,7 @@
 package com.example.traveloffice.controller;
 
 import com.example.traveloffice.domain.HotelDto;
+import com.example.traveloffice.domain.Stars;
 import com.example.traveloffice.service.HotelService;
 import com.google.gson.Gson;
 import org.junit.Test;
@@ -48,7 +49,7 @@ public class HotelControllerTest {
     public void shouldFetchHotels() throws Exception {
         //Given
         List<HotelDto> hotelsDto = new ArrayList<>();
-        hotelsDto.add(new HotelDto(1L, "hotel", "city", 4, "435"));
+        hotelsDto.add(new HotelDto(1L, "hotel", "city", Stars.FOUR, "435"));
         when(hotelService.getHotels()).thenReturn(hotelsDto);
         //When&Then
         mockMvc.perform(get("/v1/hotels").contentType(MediaType.APPLICATION_JSON))
@@ -57,7 +58,7 @@ public class HotelControllerTest {
                 .andExpect(jsonPath("$[0].id", is(1)))
                 .andExpect(jsonPath("$[0].name", is("hotel")))
                 .andExpect(jsonPath("$[0].city", is("city")))
-                .andExpect(jsonPath("[0].stars", is(4)))
+                .andExpect(jsonPath("[0].stars", is("FOUR")))
                 .andExpect(jsonPath("[0].phoneNumber", is("435")));
     }
 
@@ -65,7 +66,7 @@ public class HotelControllerTest {
     @Test
     public void shouldFetchHotel() throws Exception {
         //Given
-        HotelDto hotelDto = new HotelDto(1L, "hotel", "city", 4, "435");
+        HotelDto hotelDto = new HotelDto(1L, "hotel", "city", Stars.FOUR, "435");
         when(hotelService.getHotel(ArgumentMatchers.any(Long.class))).thenReturn(hotelDto);
         //When&Then
         mockMvc.perform(get("/v1/hotels/1").contentType(MediaType.APPLICATION_JSON))
@@ -73,7 +74,7 @@ public class HotelControllerTest {
                 .andExpect(jsonPath("$.id", is(1)))
                 .andExpect(jsonPath("$.name", is("hotel")))
                 .andExpect(jsonPath("$.city", is("city")))
-                .andExpect(jsonPath("$.stars", is(4)))
+                .andExpect(jsonPath("$.stars", is("FOUR")))
                 .andExpect(jsonPath("$.phoneNumber", is("435")));
     }
 
@@ -83,7 +84,7 @@ public class HotelControllerTest {
         HotelDto hotelDto = new HotelDto.HotelDtoBuilder()
                 .id(1L)
                 .city("city")
-                .stars(3)
+                .stars(Stars.FOUR)
                 .name("name")
                 .phoneNumber("123")
                 .build();
@@ -96,7 +97,7 @@ public class HotelControllerTest {
     @Test
     public void shouldCreateHotel() throws Exception {
         //Given
-        HotelDto hotelDto = new HotelDto(1L, "hotel", "city", 4, "435");
+        HotelDto hotelDto = new HotelDto(1L, "hotel", "city", Stars.FOUR, "435");
         Gson gson = new Gson();
         String jsonContent = gson.toJson(hotelDto);
         when(hotelService.create(hotelDto)).thenReturn(hotelDto);
@@ -112,8 +113,8 @@ public class HotelControllerTest {
     @Test
     public void shouldUpdateHotel() throws Exception {
         //Given
-        HotelDto hotelDto = new HotelDto(1L, "hotel", "city", 4, "435");
-        HotelDto updatedHotelDto = new HotelDto(1L, "updatedhotel", "updatedcity", 4, "435");
+        HotelDto hotelDto = new HotelDto(1L, "hotel", "city", Stars.FOUR, "435");
+        HotelDto updatedHotelDto = new HotelDto(1L, "updatedhotel", "updatedcity", Stars.FOUR, "435");
         when(hotelService.update(hotelDto)).thenReturn(updatedHotelDto);
         Gson gson = new Gson();
         String jsonContent = gson.toJson(hotelDto);
@@ -126,7 +127,7 @@ public class HotelControllerTest {
                 .andExpect(jsonPath("$.id", is(1)))
                 .andExpect(jsonPath("$.name", is("updatedhotel")))
                 .andExpect(jsonPath("$.city", is("updatedcity")))
-                .andExpect(jsonPath("$.stars", is(4)))
+                .andExpect(jsonPath("$.stars", is("FOUR")))
                 .andExpect(jsonPath("$.phoneNumber", is("435")));
     }
 }

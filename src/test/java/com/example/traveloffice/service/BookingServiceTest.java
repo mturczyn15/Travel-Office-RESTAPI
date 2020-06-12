@@ -81,7 +81,7 @@ public class BookingServiceTest {
         Optional<Customer> optCustomer = Optional.of(customer);
         TravelAgency travelAgency = new TravelAgency(1L, "task", "city", "3456");
         Optional<TravelAgency> optTravelAgency = Optional.of(travelAgency);
-        Hotel hotel = new Hotel(1L, "task", "city", 5, "3456");
+        Hotel hotel = new Hotel(1L, "task", "city", Stars.FIVE, "3456");
         Optional<Hotel> optHotel = Optional.of(hotel);
         when(customerRepository.findById(customer.getId())).thenReturn(optCustomer);
         when(travelAgencyRepository.findById(travelAgency.getId())).thenReturn(optTravelAgency);
@@ -105,7 +105,7 @@ public class BookingServiceTest {
         Optional<Customer> optCustomer = Optional.of(customer);
         TravelAgency travelAgency = new TravelAgency(1L, "task", "city", "3456");
         Optional<TravelAgency> optTravelAgency = Optional.of(travelAgency);
-        Hotel hotel = new Hotel(1L, "task", "city", 5, "3456");
+        Hotel hotel = new Hotel(1L, "task", "city", Stars.FIVE, "3456");
         Optional<Hotel> optHotel = Optional.of(hotel);
         when(customerRepository.findById(customer.getId())).thenReturn(optCustomer);
         when(travelAgencyRepository.findById(travelAgency.getId())).thenReturn(optTravelAgency);

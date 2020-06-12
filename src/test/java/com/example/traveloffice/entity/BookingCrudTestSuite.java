@@ -52,7 +52,7 @@ public class BookingCrudTestSuite {
         Hotel hotel = Hotel.builder()
                 .name("Lucjusz")
                 .city("Radom")
-                .stars(3)
+                .stars(Stars.FIVE)
                 .phoneNumber("000")
                 .build();
         this.hotel = hotelRepository.save(hotel);

@@ -19,9 +19,9 @@ public class Response {
     )
     private Long id;
 
-    @Column(unique = true)
+    @Column()
     private String code;
 
-    @Column(unique = true)
+    @Column()
     private String name;
 }

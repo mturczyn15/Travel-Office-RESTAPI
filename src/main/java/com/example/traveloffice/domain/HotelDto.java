@@ -8,14 +8,14 @@ public class HotelDto {
     private final Long id;
     private final String name;
     private final String city;
-    private final int stars;
+    private final Stars stars;
     private final String phoneNumber;
 
     public static class HotelDtoBuilder {
         private Long id;
         private String name;
         private String city;
-        private int stars;
+        private Stars stars;
         private String phoneNumber;
 
         public HotelDtoBuilder id(Long id) {
@@ -33,7 +33,7 @@ public class HotelDto {
             return this;
         }
 
-        public HotelDtoBuilder stars(int stars) {
+        public HotelDtoBuilder stars(Stars stars) {
             this.stars = stars;
             return this;
         }
@@ -48,7 +48,7 @@ public class HotelDto {
         }
     }
 
-    public HotelDto(Long id, String name, String city, int stars, String phoneNumber) {
+    public HotelDto(Long id, String name, String city, Stars stars, String phoneNumber) {
         this.id = id;
         this.name = name;
         this.city = city;

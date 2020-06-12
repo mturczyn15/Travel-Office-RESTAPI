@@ -27,7 +27,8 @@ public class Hotel {
     private String city;
 
     @Column(name = "STARS")
-    private int stars;
+    @Enumerated(EnumType.STRING)
+    private Stars stars;
 
     @Column(name = "PHONE_NUMBER")
     private String phoneNumber;

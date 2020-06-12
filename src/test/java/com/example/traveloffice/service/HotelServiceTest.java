@@ -1,9 +1,6 @@
 package com.example.traveloffice.service;
 
-import com.example.traveloffice.domain.EntityNotFoundException;
-import com.example.traveloffice.domain.Hotel;
-import com.example.traveloffice.domain.HotelDto;
-import com.example.traveloffice.domain.Mail;
+import com.example.traveloffice.domain.*;
 import com.example.traveloffice.mapper.HotelMapper;
 import com.example.traveloffice.repository.HotelOperationRepository;
 import com.example.traveloffice.repository.HotelRepository;
@@ -40,9 +37,9 @@ public class HotelServiceTest {
     public void testGetHotels() {
         //Given
         List<Hotel> list = new ArrayList<>();
-        list.add(new Hotel(1L, "task", "city", 5, "3456"));
+        list.add(new Hotel(1L, "task", "city", Stars.FIVE, "3456"));
         List<HotelDto> listDto = new ArrayList<>();
-        listDto.add(new HotelDto(1L, "task", "city", 5, "3456"));
+        listDto.add(new HotelDto(1L, "task", "city", Stars.FIVE, "3456"));
         when(hotelMapper.mapToDtoList(list)).thenReturn(listDto);
         when(hotelRepository.findAll()).thenReturn(list);
         //When
@@ -54,9 +51,9 @@ public class HotelServiceTest {
     @Test
     public void testGetHotel() {
         //Given
-        Optional<Hotel> hotel = Optional.of(new Hotel(1L, "task", "city", 5, "3456"));
+        Optional<Hotel> hotel = Optional.of(new Hotel(1L, "task", "city", Stars.FIVE, "3456"));
         Long id = hotel.get().getId();
-        HotelDto hotelDto = new HotelDto(1L, "task", "city", 5, "3456");
+        HotelDto hotelDto = new HotelDto(1L, "task", "city", Stars.FIVE, "3456");
         when(hotelRepository.findById(ArgumentMatchers.any(Long.class))).thenReturn(hotel);
         when(hotelMapper.mapToDto(hotel.orElseThrow(() -> new EntityNotFoundException(Hotel.class, id)))).thenReturn(hotelDto);
         //When
@@ -77,8 +74,8 @@ public class HotelServiceTest {
         simpleMessage.setTo(mail.getMailTo());
         simpleMessage.setSubject(mail.getSubject());
         simpleMessage.setText(mail.getMessage());
-        Hotel hotel = new Hotel(1L, "task", "city", 5, "3456");
-        HotelDto hotelDto = new HotelDto(1L, "task", "city", 5, "3456");
+        Hotel hotel = new Hotel(1L, "task", "city", Stars.FIVE, "3456");
+        HotelDto hotelDto = new HotelDto(1L, "task", "city", Stars.FIVE, "3456");
         when(hotelMapper.map(hotelDto)).thenReturn(hotel);
         when(hotelRepository.save(hotel)).thenReturn(hotel);
         when(hotelMapper.mapToDto(hotel)).thenReturn(hotelDto);
@@ -91,9 +88,9 @@ public class HotelServiceTest {
     @Test
     public void testUpdate() {
         //Given
-        Optional<Hotel> optHotel = Optional.of(new Hotel(1L, "task", "city", 5, "3456"));
-        Hotel hotel = new Hotel(1L, "task", "city", 5, "3456");
-        HotelDto hotelDto = new HotelDto(1L, "task", "city", 5, "3456");
+        Optional<Hotel> optHotel = Optional.of(new Hotel(1L, "task", "city", Stars.FIVE, "3456"));
+        Hotel hotel = new Hotel(1L, "task", "city", Stars.FIVE, "3456");
+        HotelDto hotelDto = new HotelDto(1L, "task", "city", Stars.FIVE, "3456");
         when(hotelMapper.map(hotelDto)).thenReturn(hotel);
         when(hotelRepository.save(hotel)).thenReturn(hotel);
         when(hotelMapper.mapToDto(hotel)).thenReturn(hotelDto);
@@ -107,8 +104,8 @@ public class HotelServiceTest {
     @Test
     public void testDelete() {
         //Given
-        Optional<Hotel> optHotel = Optional.of(new Hotel(1L, "task", "city", 5, "3456"));
-        Hotel hotel = new Hotel(1L, "task", "city", 5, "3456");
+        Optional<Hotel> optHotel = Optional.of(new Hotel(1L, "task", "city", Stars.FIVE, "3456"));
+        Hotel hotel = new Hotel(1L, "task", "city", Stars.FIVE, "3456");
         when(hotelRepository.findById(ArgumentMatchers.any(Long.class))).thenReturn(optHotel);
         //When
         hotelService.deleteHotel(hotel.getId());
