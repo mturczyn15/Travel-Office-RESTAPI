@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class HotelDto {
 
-    private final Long id;
+    private Long id;
     private final String name;
     private final String city;
     private final Stars stars;

@@ -22,6 +22,7 @@ public class HotelService {
     private HotelOperationRepository hotelOperationRepository;
 
     public HotelDto create(final HotelDto hotelDto) {
+        hotelDto.setId(null);
         Hotel hotel = hotelMapper.map(hotelDto);
         return hotelMapper.mapToDto(hotelRepository.save(hotel));
     }
