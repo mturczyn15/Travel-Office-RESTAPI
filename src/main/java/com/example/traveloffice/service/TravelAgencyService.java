@@ -54,6 +54,16 @@ public class TravelAgencyService {
     }
 
     public List<TravelAgencyDto> getTravelAgenciesByName(String name) {
-        return travelAgencyMapper.mapToDtoList(travelAgencyRepository.findTravelAgenciesByNameContains(name));
+        List<TravelAgency> travelAgenciesByNameContains = travelAgencyRepository.findTravelAgenciesByNameContains(name);
+        for (TravelAgency travelAgency : travelAgenciesByNameContains) {
+            travelAgencyOperationRepository.save(TravelAgencyOperation.builder()
+                    .travelAgency(travelAgency)
+                    .operation(Operation.GET)
+                    .date(LocalDate.now())
+                    .time(LocalTime.now())
+                    .build()
+            );
+        }
+        return travelAgencyMapper.mapToDtoList(travelAgenciesByNameContains);
     }
 }

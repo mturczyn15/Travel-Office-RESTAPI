@@ -55,6 +55,16 @@ public class HotelService {
     }
 
     public List<HotelDto> getHotelsByName(String name) {
-        return hotelMapper.mapToDtoList(hotelRepository.findHotelsByNameContains(name));
+        List<Hotel> hotelsByNameContains = hotelRepository.findHotelsByNameContains(name);
+        for (Hotel hotel : hotelsByNameContains) {
+            hotelOperationRepository.save(HotelOperation.builder()
+                    .hotel(hotel)
+                    .operation(Operation.GET)
+                    .date(LocalDate.now())
+                    .time(LocalTime.now())
+                    .build()
+            );
+        }
+        return hotelMapper.mapToDtoList(hotelsByNameContains);
     }
 }

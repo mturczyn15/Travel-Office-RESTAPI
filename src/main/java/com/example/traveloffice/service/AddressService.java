@@ -60,6 +60,17 @@ public class AddressService {
     }
 
     public List<AddressDto> getAddressesByCity(String city) {
-        return addressMapper.mapToDtoList(addressRepository.findAddressesByCityContains(city));
+
+        List<Address> addressesByFirstNameContains = addressRepository.findAddressesByCityContains(city);
+        for (Address address : addressesByFirstNameContains) {
+            addressOperationRepository.save(AddressOperation.builder()
+                    .address(address)
+                    .operation(Operation.GET)
+                    .date(LocalDate.now())
+                    .time(LocalTime.now())
+                    .build()
+            );
+        }
+        return addressMapper.mapToDtoList(addressesByFirstNameContains);
     }
 }
