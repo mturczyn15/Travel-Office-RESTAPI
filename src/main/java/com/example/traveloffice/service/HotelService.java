@@ -39,13 +39,6 @@ public class HotelService {
 
     public HotelDto getHotel(final Long id) {
         Optional<Hotel> hotel = hotelRepository.findById(id);
-        hotelOperationRepository.save(HotelOperation.builder()
-                .hotel(hotel.orElse(null))
-                .operation(Operation.GET)
-                .date(LocalDate.now())
-                .time(LocalTime.now())
-                .build()
-        );
         return hotelMapper.mapToDto(hotel.orElseThrow(() -> new EntityNotFoundException(Hotel.class, id)));
     }
 
@@ -58,7 +51,7 @@ public class HotelService {
         List<Hotel> hotelsByNameContains = hotelRepository.findHotelsByNameContains(name);
         for (Hotel hotel : hotelsByNameContains) {
             hotelOperationRepository.save(HotelOperation.builder()
-                    .hotel(hotel)
+                    .hotel("Id: " + hotel.getId() + hotel.getName())
                     .operation(Operation.GET)
                     .date(LocalDate.now())
                     .time(LocalTime.now())

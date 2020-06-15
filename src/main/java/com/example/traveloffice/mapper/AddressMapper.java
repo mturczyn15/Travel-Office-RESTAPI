@@ -16,8 +16,8 @@ public class AddressMapper {
                 .customer(customer)
                 .street(addressDto.getStreet())
                 .houseNumber(addressDto.getHouseNumber())
-                .zipCode(addressDto.getZipCode())
                 .city(addressDto.getCity())
+                .zipCode(addressDto.getZipCode())
                 .phoneNumber(addressDto.getPhoneNumber())
                 .build();
     }
@@ -28,8 +28,8 @@ public class AddressMapper {
                 address.getCustomer().getId(),
                 address.getStreet(),
                 address.getHouseNumber(),
-                address.getZipCode(),
                 address.getCity(),
+                address.getZipCode(),
                 address.getPhoneNumber()
         );
     }

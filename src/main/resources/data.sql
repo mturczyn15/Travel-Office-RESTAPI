@@ -19,12 +19,5 @@ INSERT INTO ADDRESSES (CUSTOMER_ID,
   STREET, HOUSE_NR, CITY, ZIP_CODE, PHONE_NR)  VALUES
   ('1', 'Lubelska', '5', 'Warsaw', '22-304', '123-123-456'),
   ('3', 'Radziszewska', '5c', 'Kraków', '23-123', '566-123-456'),
-  ('4', 'Lwowska', 'Wrocław', '54', '12-345', '345-123-456'),
-  ('2', 'Krótka', 'Lublin', '51', '12-203', '111-123-456');
-
-INSERT INTO BOOKINGS (CUSTOMER_ID, HOTEL_ID, TRAVELAGENCY_ID,
-  PRICE, START_DATE, END_DATE, PAYMENT)  VALUES
-  ('1', '1', '1', '123', '2020-06-01', '2020-06-11', 'BLIK'),
-  ('3', '2', '2', '450', '2020-07-01', '2020-07-11', 'BLIK'),
-  ('4', '2', '3', '1200', '2020-08-01', '2020-08-11', 'BLIK'),
-  ('2', '3', '1', '120', '2020-01-01', '2020-01-21', 'BLIK');
+  ('4', 'Lwowska', '54', 'Wrocław', '12-345', '345-123-456'),
+  ('2', 'Krótka', '51', 'Lublin', '12-203', '111-123-456');

@@ -44,7 +44,6 @@ public class BookingCrudTestSuite {
                 .lastName("test_lastName")
                 .login("test_login")
                 .email("test_email")
-                .bookings(new ArrayList<>())
                 .addresses(new ArrayList<>())
                 .build();
         this.customer = customerRepository.save(customer);

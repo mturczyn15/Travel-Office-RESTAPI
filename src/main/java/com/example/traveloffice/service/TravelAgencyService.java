@@ -38,13 +38,6 @@ public class TravelAgencyService {
 
     public TravelAgencyDto getTravelAgency(final Long id) {
         Optional<TravelAgency> travelAgency = travelAgencyRepository.findById(id);
-        travelAgencyOperationRepository.save(TravelAgencyOperation.builder()
-                .travelAgency(travelAgency.orElse(null))
-                .operation(Operation.GET)
-                .date(LocalDate.now())
-                .time(LocalTime.now())
-                .build()
-        );
         return travelAgencyMapper.mapToDto(travelAgency.orElseThrow(() -> new EntityNotFoundException(TravelAgency.class, id)));
     }
 
@@ -57,7 +50,7 @@ public class TravelAgencyService {
         List<TravelAgency> travelAgenciesByNameContains = travelAgencyRepository.findTravelAgenciesByNameContains(name);
         for (TravelAgency travelAgency : travelAgenciesByNameContains) {
             travelAgencyOperationRepository.save(TravelAgencyOperation.builder()
-                    .travelAgency(travelAgency)
+                    .travelAgency("Id: " + travelAgency.getId() + travelAgency.getName())
                     .operation(Operation.GET)
                     .date(LocalDate.now())
                     .time(LocalTime.now())

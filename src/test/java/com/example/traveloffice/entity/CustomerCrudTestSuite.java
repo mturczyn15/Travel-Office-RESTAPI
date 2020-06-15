@@ -32,7 +32,6 @@ public class CustomerCrudTestSuite {
                 .lastName("test_lastName")
                 .login("test_login")
                 .email("test_email")
-                .bookings(new ArrayList<>())
                 .addresses(new ArrayList<>())
                 .build();
 
@@ -51,7 +50,6 @@ public class CustomerCrudTestSuite {
                 .build();
 
         customer.addAddress(address);
-        customer.addBooking(booking);
         address.setCustomer(customer);
         booking.setCustomer(customer);
 
@@ -82,7 +80,6 @@ public class CustomerCrudTestSuite {
                 .lastName("test_lastName")
                 .login("test_login")
                 .email("test_email")
-                .bookings(new ArrayList<>())
                 .addresses(new ArrayList<>())
                 .build();
 
@@ -106,7 +103,6 @@ public class CustomerCrudTestSuite {
                 .lastName("test_lastName")
                 .login("test_login")
                 .email("test_email")
-                .bookings(new ArrayList<>())
                 .addresses(new ArrayList<>())
                 .build();
         //When
@@ -127,7 +123,6 @@ public class CustomerCrudTestSuite {
                 .lastName("test_lastName")
                 .login("test_login")
                 .email("test_email")
-                .bookings(new ArrayList<>())
                 .addresses(new ArrayList<>())
                 .build();
 
@@ -137,7 +132,6 @@ public class CustomerCrudTestSuite {
                 .lastName("test_lastName")
                 .login("test_login")
                 .email("test_email")
-                .bookings(new ArrayList<>())
                 .addresses(new ArrayList<>())
                 .build();
         //When
@@ -162,7 +156,6 @@ public class CustomerCrudTestSuite {
                 .lastName("test_lastName")
                 .login("test_login")
                 .email("test_email")
-                .bookings(new ArrayList<>())
                 .addresses(new ArrayList<>())
                 .build();
 

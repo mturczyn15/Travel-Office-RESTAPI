@@ -1,6 +1,5 @@
 package com.example.traveloffice.domain;
 
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -21,10 +20,8 @@ public class TravelAgencyOperation {
     @Column(name = "ID")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @NotNull
-    @JoinColumn(name = "TRAVELAGENCY_ID")
-    private TravelAgency travelAgency;
+    @Column(name = "TRAVELAGENCY")
+    private String travelAgency;
 
     @Column(name = "OPERATION")
     @Enumerated(EnumType.STRING)

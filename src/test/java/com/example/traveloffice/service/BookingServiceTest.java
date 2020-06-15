@@ -77,7 +77,7 @@ public class BookingServiceTest {
         //Given
         Booking booking = new Booking(1L, new Customer(), new TravelAgency(), new Hotel(), new BigDecimal(345), LocalDate.of(2003,12,12), LocalDate.of(2003,12,19), PaymentType.CREDIT_CARD);
         BookingDto bookingDto = new BookingDto(1L, 1L, 1L, 1L, new BigDecimal(345), LocalDate.of(2003,12,12), LocalDate.of(2003,12,19), PaymentType.CREDIT_CARD);
-        Customer customer = new Customer(1L, "task", "city", "3456", "mail", new ArrayList<>(), new ArrayList<>());
+        Customer customer = new Customer(1L, "task", "city", "3456", "mail", new ArrayList<>());
         Optional<Customer> optCustomer = Optional.of(customer);
         TravelAgency travelAgency = new TravelAgency(1L, "task", "city", "3456");
         Optional<TravelAgency> optTravelAgency = Optional.of(travelAgency);
@@ -101,7 +101,7 @@ public class BookingServiceTest {
         Optional<Booking> optBooking = Optional.of(new Booking(1L, new Customer(), new TravelAgency(), new Hotel(), new BigDecimal(345), LocalDate.of(2003,12,12), LocalDate.of(2003,12,19), PaymentType.CREDIT_CARD));
         Booking booking = new Booking(1L, new Customer(), new TravelAgency(), new Hotel(), new BigDecimal(345), LocalDate.of(2003,12,12), LocalDate.of(2003,12,19), PaymentType.CREDIT_CARD);
         BookingDto bookingDto = new BookingDto(1L, 1L, 1L, 1L, new BigDecimal(345), LocalDate.of(2003,12,12), LocalDate.of(2003,12,19), PaymentType.CREDIT_CARD);
-        Customer customer = new Customer(1L, "task", "city", "3456", "mail", new ArrayList<>(), new ArrayList<>());
+        Customer customer = new Customer(1L, "task", "city", "3456", "mail", new ArrayList<>());
         Optional<Customer> optCustomer = Optional.of(customer);
         TravelAgency travelAgency = new TravelAgency(1L, "task", "city", "3456");
         Optional<TravelAgency> optTravelAgency = Optional.of(travelAgency);

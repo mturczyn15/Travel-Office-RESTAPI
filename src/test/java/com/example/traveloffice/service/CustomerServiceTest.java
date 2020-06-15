@@ -44,7 +44,7 @@ public class CustomerServiceTest {
     public void testGetCustomers() {
         //Given
         List<Customer> list = new ArrayList<>();
-        list.add(new Customer(1L, "task", "city", "3456", "mail",  new ArrayList<>(), new ArrayList<>()));
+        list.add(new Customer(1L, "task", "city", "3456", "mail",  new ArrayList<>()));
         List<CustomerDto> listDto = new ArrayList<>();
         listDto.add(new CustomerDto(1L, "task", "city", "3456", "mail"));
         when(customerMapper.mapToDtoList(list)).thenReturn(listDto);
@@ -58,7 +58,7 @@ public class CustomerServiceTest {
     @Test
     public void testGetCustomer() {
         //Given
-        Optional<Customer> customer = Optional.of(new Customer(1L, "task", "city", "3456", "mail", new ArrayList<>(), new ArrayList<>()));
+        Optional<Customer> customer = Optional.of(new Customer(1L, "task", "city", "3456", "mail", new ArrayList<>()));
         Long id = customer.get().getId();
         CustomerDto customerDto = new CustomerDto(1L, "task", "city", "3456", "mail");
         when(customerRepository.findById(ArgumentMatchers.any(Long.class))).thenReturn(customer);
@@ -72,7 +72,7 @@ public class CustomerServiceTest {
     @Test
     public void testCreate() {
         //Given
-        Customer customer = new Customer(1L, "task", "city", "3456", "mail", new ArrayList<>(), new ArrayList<>());
+        Customer customer = new Customer(1L, "task", "city", "3456", "mail", new ArrayList<>());
         Address address = new Address(1L, customer, "street", "4","city", "435", "5");
         CustomerDto customerDto = new CustomerDto(1L, "task", "city", "3456", "mail");
         Optional<Address> optAddress = Optional.of(address);
@@ -88,8 +88,8 @@ public class CustomerServiceTest {
     @Test
     public void testUpdate() {
         //Given
-        Optional<Customer> optCustomer = Optional.of(new Customer(1L, "task", "city", "3456","mail",  new ArrayList<>(), new ArrayList<>()));
-        Customer customer = new Customer(1L, "task", "city", "3456", "mail",  new ArrayList<>(), new ArrayList<>());
+        Optional<Customer> optCustomer = Optional.of(new Customer(1L, "task", "city", "3456","mail", new ArrayList<>()));
+        Customer customer = new Customer(1L, "task", "city", "3456", "mail", new ArrayList<>());
         CustomerDto customerDto = new CustomerDto(1L, "task", "city", "3456", "mail");
         Address address = new Address(1L, customer, "street", "4","city", "435", "5");
         Optional<Address> optAddress = Optional.of(address);
@@ -106,8 +106,8 @@ public class CustomerServiceTest {
     @Test
     public void testDelete() {
         //Given
-        Optional<Customer> optCustomer = Optional.of(new Customer(1L, "task", "city", "3456", "mail",  new ArrayList<>(), new ArrayList<>()));
-        Customer customer = new Customer(1L, "task", "city", "3456", "mail",  new ArrayList<>(), new ArrayList<>());
+        Optional<Customer> optCustomer = Optional.of(new Customer(1L, "task", "city", "3456", "mail", new ArrayList<>()));
+        Customer customer = new Customer(1L, "task", "city", "3456", "mail",  new ArrayList<>());
         when(customerRepository.findById(ArgumentMatchers.any(Long.class))).thenReturn(optCustomer);
         //When
         customerService.deleteCustomer(customer.getId());

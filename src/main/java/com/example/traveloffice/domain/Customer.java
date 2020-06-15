@@ -35,14 +35,6 @@ public class Customer {
     private String email;
 
     @OneToMany(
-            targetEntity = Booking.class,
-            mappedBy = "customer",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private List<Booking> bookings = new ArrayList<>();
-
-    @OneToMany(
             targetEntity = Address.class,
             mappedBy = "customer",
             cascade = CascadeType.ALL,
@@ -52,9 +44,5 @@ public class Customer {
 
     public void addAddress(Address address) {
         addresses.add(address);
-    }
-
-    public void addBooking(Booking booking) {
-        bookings.add(booking);
     }
 }

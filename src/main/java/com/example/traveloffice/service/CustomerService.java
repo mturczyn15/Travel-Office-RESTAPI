@@ -39,13 +39,6 @@ public class CustomerService {
 
     public CustomerDto getCustomer(final Long id) {
         Optional<Customer> customer = customerRepository.findById(id);
-        customerOperationRepository.save(CustomerOperation.builder()
-                .customer(customer.orElse(null))
-                .operation(Operation.GET)
-                .date(LocalDate.now())
-                .time(LocalTime.now())
-                .build()
-        );
         return customerMapper.mapToDto(customer.orElseThrow(() -> new EntityNotFoundException(Customer.class, id)));
     }
 
@@ -58,7 +51,7 @@ public class CustomerService {
         List<Customer> customersByFirstNameContains = customerRepository.findCustomersByFirstNameContains(name);
         for (Customer customer : customersByFirstNameContains) {
             customerOperationRepository.save(CustomerOperation.builder()
-                    .customer(customer)
+                    .customer(customer.getFirstName() + customer.getLastName() + customer.getId())
                     .operation(Operation.GET)
                     .date(LocalDate.now())
                     .time(LocalTime.now())

@@ -44,13 +44,6 @@ public class AddressService {
 
     public AddressDto getAddress(final Long id) {
         Optional<Address> address = addressRepository.findById(id);
-        addressOperationRepository.save(AddressOperation.builder()
-                .address(address.orElse(null))
-                .operation(Operation.GET)
-                .date(LocalDate.now())
-                .time(LocalTime.now())
-                .build()
-        );
         return addressMapper.mapToDto(address.orElseThrow(() -> new EntityNotFoundException(Address.class, id)));
     }
 
@@ -64,7 +57,7 @@ public class AddressService {
         List<Address> addressesByFirstNameContains = addressRepository.findAddressesByCityContains(city);
         for (Address address : addressesByFirstNameContains) {
             addressOperationRepository.save(AddressOperation.builder()
-                    .address(address)
+                    .address("Id: " + address.getId() + address.getCity())
                     .operation(Operation.GET)
                     .date(LocalDate.now())
                     .time(LocalTime.now())
